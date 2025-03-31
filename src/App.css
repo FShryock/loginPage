@@ -1,38 +1,154 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(83 22 147);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app {
+    position: relative;
+    width: 350px;
+    height: 400px;
+    /* background-color: #060606; */
+    background-color: transparent;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Animation part */
+.app::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+
+    width: 350px;
+    height: 400px;
+
+    background: linear-gradient(25deg, transparent, orange, rgb(103, 103, 225));
+    transform-origin: bottom right;
+    animation: animate 7s linear infinite;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes animate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form {
+    position: absolute;
+    /* inset sets the padding betweent the app-css and animation and the form  */
+    inset: 10px;
+    background-color: rgb(217, 215, 243);
+    border-radius: 10px;
+    z-index: 100%;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form h2 {
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1rem;
+}
+
+.input-box {
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+
+.input-box input {
+    position: relative;
+    width: 100%;
+    padding: 15px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #23232a;
+    font-size: 1rem;
+    z-index: 99;
+    letter-spacing: 0.08rem;
+}
+
+.input-box span {
+    position: absolute;
+    left: 0;
+    padding: 15px 0px 10px;
+    font-size: 1rem;
+    color: #717070;
+    letter-spacing: 0.08rem;
+    transition: 0.9s;
+}
+
+.input-box input:valid ~ span,
+.input-box input:focus ~ span {
+    color: darkorange;
+    font-size: 0.75rem;
+    transform: translateX(0px) translateY(-35px);
+
+}
+
+.input-box i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    height: 2px;
+    background-color: rgb(255 166 0);
+    border-radius: 5px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.input-box input:valid ~ i, 
+.input-box input:focus ~ i {
+    height: 35px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a:hover {
+    color: darkorange;
+}
+
+.links a {
+    margin: 20px 0;
+    font-size: 1rem;
+    color: #8f8f8f;
+    text-decoration: none;
+}
+
+input[type="submit"] {
+    border: none;
+    outline: none;
+    background-color: darkorange;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover {
+    border: none;
+    outline: none;
+    background-color: orange;
 }
